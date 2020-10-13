@@ -1,0 +1,27 @@
+version: "3"
+services:
+  imdb-db:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: imdb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+
+  imdb-web:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    command: 'sh -c "./manage.py migrate && ./manage.py runserver 0.0.0.0:8000"'
+    volumes:
+      - ./:/app
+    depends_on:
+      - imdb-db
+
+volumes:
+  db-data:
