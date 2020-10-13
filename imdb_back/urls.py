@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework import routers
+from imdb_back.users.routers.user_router import usersRouter
+
+router = routers.DefaultRouter()
+router.registry.extend(usersRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    
+] + router.urls

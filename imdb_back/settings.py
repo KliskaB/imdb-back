@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'imdb_back.imdb_back',
     'imdb_back.users',
     'imdb_back.movies',
