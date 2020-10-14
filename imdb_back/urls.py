@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from imdb_back.users.routers.user_router import usersRouter
+from imdb_back.movies.routers.genre_router import genresRouter
 from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 router.registry.extend(usersRouter.registry)
+router.registry.extend(genresRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
