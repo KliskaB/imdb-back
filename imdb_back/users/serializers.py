@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+import string
+from random import choice
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,4 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
         user = User(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
+        chars = string.digits
+        random =  ''.join(choice(chars) for _ in range(4))
+        user.profile.verification_token = random
+        user.save()
         return user
+
+        
