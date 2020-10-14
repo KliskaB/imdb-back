@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from imdb_back.movies.routers.genre_router import genresRouter
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.registry.extend(genresRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+] + router.urls
+
+
