@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from imdb_back.users.routers.user_router import usersRouter
+from rest_framework_simplejwt import views as jwt_views
 
 router = routers.DefaultRouter()
 router.registry.extend(usersRouter.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+    path('api/auth/login', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
 ] + router.urls
