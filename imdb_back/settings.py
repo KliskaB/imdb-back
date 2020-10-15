@@ -165,3 +165,5 @@ EMAIL_PORT = 1025
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_USE_TLS = False
+
+AUTH_USER_MODEL = 'users.User'
