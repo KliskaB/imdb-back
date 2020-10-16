@@ -17,7 +17,10 @@ class UserSerializer(serializers.ModelSerializer):
         user.verification_code = random
         user.save()
         email_sender = EmailSender()
-        email_sender.send_email(user.email, user.verification_code)
+        reciever_email = user.email
+        verification_code = user.verification_code
+        subject = "Verify your email address"
+        email_sender.send_email(reciever_email, subject, verification_code, "verification-email.html")
         return user
 
 
