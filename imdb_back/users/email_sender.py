@@ -4,8 +4,6 @@ from django.utils.html import strip_tags
 
 class EmailSender():
     def send_email(self, receiver_email, subject, data, template):
-        # receiver_email, verification_code, subject
-        print(data)
         from_email = "imdb.back@gmail.com"
         to = receiver_email
         html_message = render_to_string(template, {'data': data})
