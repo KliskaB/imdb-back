@@ -22,16 +22,11 @@ class VerifyUserViewSet(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
-        print(request)
         user = request.user
-        content = False
-        if(user.verification_code == request.data['verification_code']):
-            content = True
-            user.is_verified = True
-            user.save()
-            return Response(content, status=status.HTTP_200_OK)  
-        else:
-            return Response(content, status=status.HTTP_404_NOT_FOUND)
+        serializer = VerifyUserSerializer(user, data=request.data, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user)
+        return Response(True, status=status.HTTP_200_OK)  
 
 
 class UserDetailViewSet(APIView):
