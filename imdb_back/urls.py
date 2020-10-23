@@ -20,6 +20,8 @@ from imdb_back.users.routers.user_router import usersRouter
 from imdb_back.movies.routers.genre_router import genresRouter
 from rest_framework_simplejwt import views as jwt_views
 from imdb_back.users.views import VerifyUserViewSet, UserDetailViewSet
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.registry.extend(usersRouter.registry)
@@ -30,4 +32,4 @@ urlpatterns = [
     path('api/auth/login', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/users/verify', VerifyUserViewSet.as_view()),
     path('api/users/me/', UserDetailViewSet.as_view(), name='users_me'),
-] + router.urls
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + router.urls

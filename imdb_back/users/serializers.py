@@ -46,6 +46,6 @@ class VerifyUserSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'username', 'is_verified']
+        fields = ['first_name', 'last_name', 'email', 'username', 'is_verified', 'profile_picture']
 
 

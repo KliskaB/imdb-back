@@ -161,7 +161,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "imdb_back", "site_static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "imdb_back", "static")
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "imdb_back", "media")
-MEDIA_URL = "/media/"
+MEDIA_URL = "http://localhost:8000/media/"
 
 EMAIL_HOST = 'mailhog'
 
